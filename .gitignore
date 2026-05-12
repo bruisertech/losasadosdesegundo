@@ -1,2 +1,2 @@
-losasadosdesegundo/node_modules
-verification
+node_modules\n.DS_Store\ndist\ndist-ssr\n*.local\n.env\n.env.*\n!.env.example\n
+node_modules
