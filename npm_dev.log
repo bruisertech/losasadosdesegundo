@@ -7,11 +7,3 @@
 
   ➜  Local:   http://localhost:5173/
   ➜  Network: use --host to expose
-9:32:46 PM [vite] vite.config.js changed, restarting server...
-9:32:46 PM [vite] (client) page reload index.html
-9:32:46 PM [vite] (client) hmr update /node_modules/@fontsource/inter/400.css, /node_modules/@fontsource/inter/600.css, /node_modules/@fontsource/inter/800.css, /node_modules/@fontsource/montserrat/700.css, /node_modules/@fontsource/montserrat/900.css, /src/index.css
-9:32:46 PM [vite] (client) hmr update /src/App.jsx, /src/index.css
-9:32:46 PM [vite] (client) hmr update /src/index.css
-9:32:46 PM [vite] (client) page reload src/main.jsx
-9:32:47 PM [vite] (client) Re-optimizing dependencies because vite config has changed
-9:32:47 PM [vite] server restarted.
