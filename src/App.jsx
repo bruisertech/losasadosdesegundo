@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Truck, Flame, Database, Target, TrendingUp, MonitorPlay, Zap, ArrowRight, Smartphone, Activity, Code, MapPin, CheckCircle2 } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Truck, Flame, Database, Target, TrendingUp, MonitorPlay, Zap, Smartphone, Activity, Code, MapPin, CheckCircle2 } from 'lucide-react';
 
 function App() {
   const [orderState, setOrderState] = useState(0); // 0: Idle, 1: Cocinando, 2: Empacando, 3: En camino
