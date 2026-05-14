@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Truck, Flame, Database, Target, TrendingUp, MonitorPlay, Zap, Smartphone, Activity, Code, MapPin, CheckCircle2 } from 'lucide-react';
+import { Bike, Flame, Database, Target, TrendingUp, MonitorPlay, Zap, Smartphone, Activity, Code, MapPin, CheckCircle2 } from 'lucide-react';
 
 function App() {
   const [orderState, setOrderState] = useState(0); // 0: Idle, 1: Cocinando, 2: Empacando, 3: En camino
 
   const simulateOrder = () => {
     setOrderState(1);
-    setTimeout(() => setOrderState(2), 2000);
-    setTimeout(() => setOrderState(3), 4000);
-    setTimeout(() => setOrderState(0), 8000); // Reset after a while
+    setTimeout(() => setOrderState(2), 2500);
+    setTimeout(() => setOrderState(3), 5000);
+    setTimeout(() => setOrderState(0), 10000); // Reset after a while
   };
 
   return (
@@ -24,7 +24,7 @@ function App() {
         >
           {[...Array(10)].map((_, i) => (
             <div key={i} className="flex items-center text-white font-bold tracking-wider text-sm">
-              <Truck size={16} className="mx-2" />
+              <Bike size={16} className="mx-2" />
               ENVÍOS GRATIS A PARTIR DE $60.000
             </div>
           ))}
@@ -138,18 +138,20 @@ function App() {
               <div className="w-full h-40 bg-gray-900 rounded-xl overflow-hidden relative border border-white/10">
                 <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwaXRoIGQ9Ik0wIDEwaDQwdjFINHptMCAyMGg0MHYxSDB6TTEwIDB2NDBoLTFWMHptMjAgMHY0MGgtMVYweiIgZmlsbD0icmdiYSgyNTUsMjU1LDI1NSwwLjA1KSIvPjwvc3ZnPg==')] opacity-50"></div>
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                   <MapPin className="text-brand-red drop-shadow-[0_0_10px_rgba(204,41,0,0.8)]" size={32} />
+                   <MapPin className={`transition-all duration-1000 ${orderState === 1 ? 'text-brand-orange drop-shadow-[0_0_20px_rgba(255,90,0,1)] scale-110' : 'text-brand-red drop-shadow-[0_0_10px_rgba(204,41,0,0.8)]'}`} size={32} />
                 </div>
 
-                {orderState === 3 && (
+                {orderState >= 2 && (
                   <motion.div
                     className="absolute top-1/2 left-0"
                     initial={{ x: -20, y: 10 }}
-                    animate={{ x: 250, y: -20 }}
-                    transition={{ duration: 4, ease: "linear" }}
+                    animate={
+                      orderState === 2 ? { x: 120, y: -5 } : { x: 280, y: -20 }
+                    }
+                    transition={{ duration: orderState === 2 ? 1 : 3, ease: "linear" }}
                   >
                     <div className="relative">
-                      <Truck className="text-brand-orange" size={24} />
+                      <Bike className="text-brand-orange" size={24} />
                       <div className="absolute -left-4 top-1/2 -translate-y-1/2 flex space-x-1">
                         <motion.div animate={{ opacity: [1, 0], scale: [1, 2] }} transition={{ repeat: Infinity, duration: 0.5 }} className="w-2 h-2 bg-brand-red rounded-full blur-[1px]"></motion.div>
                         <motion.div animate={{ opacity: [1, 0], scale: [1, 1.5] }} transition={{ repeat: Infinity, duration: 0.5, delay: 0.1 }} className="w-2 h-2 bg-brand-orange rounded-full blur-[1px]"></motion.div>
@@ -162,7 +164,15 @@ function App() {
 
             {/* Timeline */}
             <div className="relative pl-6 space-y-6">
+              {/* Línea de fondo */}
               <div className="absolute left-[11px] top-2 bottom-2 w-[2px] bg-white/10"></div>
+              {/* Línea de progreso animada */}
+              <motion.div
+                className="absolute left-[11px] top-2 w-[2px] bg-brand-orange"
+                initial={{ height: "0%" }}
+                animate={{ height: orderState === 0 ? "0%" : orderState === 1 ? "15%" : orderState === 2 ? "60%" : "100%" }}
+                transition={{ duration: 0.5 }}
+              ></motion.div>
 
               <div className="relative">
                 <div className={`absolute -left-6 w-5 h-5 rounded-full border-4 border-brand-dark flex items-center justify-center transition-colors ${orderState >= 1 ? 'bg-brand-orange' : 'bg-gray-700'}`}>
@@ -191,7 +201,7 @@ function App() {
               className="mt-8 w-full bg-white/5 border border-white/10 hover:bg-white/10 text-white font-medium py-3 rounded-lg flex items-center justify-center space-x-2 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Zap size={18} className={orderState !== 0 ? "text-gray-500" : "text-brand-orange"} />
-              <span>{orderState === 0 ? "Simular Tracking Exótico" : "En proceso..."}</span>
+              <span>{orderState === 0 ? "Simular Tracking" : "En proceso..."}</span>
             </button>
           </div>
         </div>
