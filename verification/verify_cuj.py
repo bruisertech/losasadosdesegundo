@@ -11,7 +11,7 @@ def run_cuj(page):
     page.wait_for_timeout(500)
 
     # Scroll to and click the tracking button
-    button = page.get_by_role("button", name="Simular Tracking Exótico")
+    button = page.get_by_role("button", name="Simular Tracking")
     button.scroll_into_view_if_needed()
     page.wait_for_timeout(500)
     button.click()
