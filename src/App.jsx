@@ -44,7 +44,7 @@ function App() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            src="/assets/asados.png"
+            src={`${import.meta.env.BASE_URL}assets/asados.png`}
             alt="Los Asados de Segundo Logo"
             className="w-48 mb-8 filter drop-shadow-[0_0_15px_rgba(255,90,0,0.5)]"
           />
@@ -62,7 +62,7 @@ function App() {
           >
             <div className="absolute inset-0 bg-black/40 rounded-3xl -z-10"></div>
             <img
-              src="/assets/asado.png"
+              src={`${import.meta.env.BASE_URL}assets/asado.png`}
               alt="Picada Familiar"
               className="w-full h-full object-cover rounded-[22px]"
             />
